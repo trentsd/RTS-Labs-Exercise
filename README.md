@@ -1,6 +1,6 @@
 # RTS-Labs-Exercise
 
-These are my responses for the coding tests given by RTS Labs. Each response has its own file as well as being presented here.
+These are my responses for the coding tests given by RTS Labs. My responses are in Java.
 
 #``1  Print the number of integers in an array that are above the given input and the number that are below, e.g. for the array [1, 5, 2, 1, 10] with input 6, print “above: 1, below: 4”.
 
@@ -86,8 +86,10 @@ These are my responses for the coding tests given by RTS Labs. Each response has
 #3  If you could change 1 thing about your favorite framework/language/platform (pick one), what would it be?
 
 	If I could change 1 thing about Java, I would add some succinct ways to initialize common data types. For example, consider initializing a new File object:
+	
 	File newFile = new File(“inputFile.txt”);
-Reading this, my brain begins to filter out the word “file”, and suddenly the concept of a file is as abstract as a neural network. 
+	
+	Reading this, my brain begins to filter out the word “file”, and suddenly the concept of a file is as abstract as a neural network. 
 I understand that this syntax is designed to prevent type mismatching, and for some people this is a much more readable style. Personally, I would have an easier time reading through somebody’s code if there was a good alternative to Java’s excessive verbosity.
 
 Let us know if you have any questions! If you're good to go, please send us back your exercise at your convenience (please upload your response to a public git repository, such as Github).
