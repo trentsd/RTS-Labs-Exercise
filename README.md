@@ -79,7 +79,7 @@ These are my responses for the coding tests given by RTS Labs. My responses are 
         }
         
         //Instantiate resulting char array as String and return it
-        return new String(new String(rotated));
+        return new String(rotated);
     }
 
 
