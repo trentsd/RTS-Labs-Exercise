@@ -90,7 +90,8 @@ These are my responses for the coding tests given by RTS Labs. My responses are 
 	File newFile = new File(“inputFile.txt”);
 	
 	Reading this, my brain begins to filter out the word “file”, and suddenly the concept of a file is as abstract as a neural network. 
-I understand that this syntax is designed to prevent type mismatching, and for some people this is a much more readable style. Personally, I would have an easier time reading through somebody’s code if there was a good alternative to Java’s excessive verbosity.
+	
+	I understand that this syntax is designed to prevent type mismatching, and for some people this is a much more readable style. Personally, I would have an easier time reading through somebody’s code if there was a good alternative to Java’s excessive verbosity.
 
 Let us know if you have any questions! If you're good to go, please send us back your exercise at your convenience (please upload your response to a public git repository, such as Github).
 
