@@ -1,100 +1,77 @@
 # RTS-Labs-Exercise
+## Running the command-line demo
+If the Java JDK/JRE are installed on your machine, a convenient command line interface can be run to demonstrate the methods written for the exercise:
+ - Download the RTS-Labs-Exercise.jar file
+ - In a terminal/command prompt window, navigate to the location of the .jar file
+ - Run `java -jar RTS-Labs-Exercise.jar`
 
-These are my responses for the coding tests given by RTS Labs. My responses are in Java.
+## My Responses
+The following are my responses to the code exercise in Java
 
-#``1  Print the number of integers in an array that are above the given input and the number that are below, e.g. for the array [1, 5, 2, 1, 10] with input 6, print “above: 1, below: 4”.
-
-    /**
-     * Prints the number of integers in an array that are above the given input 
-     * and the number that are below
-     * 
-     * @param array
-     *  The integer array to be scanned e.g [1, 5, 2, 1, 10]
-     * @param input
-     *  The integer to which compare the members of the array e.g 6
-     * 
-     */
-    public void aboveBelow(int[] array, int input) {
-        //Initialize counters for above and below
-        int above = 0;
-        int below = 0;
-        
-        //Step through array checking if each member is above or below input
-        for (int i : array) {
-            if (i > input) {
-                above++;
-            }
-            else if (i < input) {
-                below++;
-            }
+1. Print the number of integers in an array that are above the given input and the number that are below, e.g. for the array [1, 5, 2, 1, 10] with input 6, print “above: 1, below: 4”.
+```java
+/**
+ * Prints the amount of integers in an array that are greater than the given
+ * input and the amount that are less than 
+ * Complexity O(n), where n is the length of the given array of integers.
+ *
+ * @param numbers          The integer array to be scanned 
+ *                         e.g [1, 5, 2, 1, 10]
+ * @param comparisonNumber The integer to which compare the members of the array
+ *                         e.g 6
+ * 
+ */
+public void printAboveBelow(int[] numbers, int comparisonNumber) {
+    int aboveCount = 0;
+    int belowCount = 0;
+    for (int i : numbers) {
+        if (i > comparisonNumber) {
+            aboveCount++;
+        } else if (i < comparisonNumber) {
+            belowCount++;
         }
-        
-        //Print results
-        System.out.printf("above: %d, below: %d%n", above, below);
     }
+    System.out.printf("above: %d, below: %d%n", aboveCount, belowCount);
+}
+```
+2. Rotate the characters in a string by a given input and have the overflow appear at the beginning, e.g. “MyString” rotated by 2 is “ngMyStri”.
+```java
+/**
+ * Gives an appearance of "rotating" a word by a given input. 
+ * 1. Calculate where the original string will begin once rotated. 
+ * 2. Split the string into two halves at this position. 
+ * 3. Swap the order of these two halves to form the new "rotated" form of the string. 
+ * Complexity O(n), where n is the length of the string to be rotated.
+ * 
+ * @param wordToBeRotated The word to be rotated, input as a String
+ *                        e.g."MyString"
+ * @param amountToRotate  The amount to rotate the string, input as an Integer
+ *                        e.g. 2
+ * @return The rotated word as a String
+ */
+public String rotateString(String wordToBeRotated, int amountToRotate) {
+    int rotatedWordStartingIndex = getRotatedWordStartingIndex(amountToRotate, wordToBeRotated.length());
+    String rotatedWordFirstHalf = getRotatedWordFirstHalf(wordToBeRotated, rotatedWordStartingIndex);
+    String rotatedWordSecondHalf = getRotatedWordSecondHalf(wordToBeRotated, rotatedWordStartingIndex);
+    return rotatedWordFirstHalf.concat(rotatedWordSecondHalf);
+}
 
-
-
-
-
-
-
-#2  Rotate the characters in a string by a given input and have the overflow appear at the beginning, e.g. “MyString” rotated by 2 is “ngMyStri”.
-
-    /**
-     * Rotates the characters in a string by a given input and has the overflow 
-     * appear at the beginning. O(n) complexity.
-     * 
-     * @param inputString
-     *  The string to be rotated, input as a String e.g. "MyString"
-     * @param inputInc
-     *  The amount to rotate the string, input as an Integer e.g. 2
-     * @return The rotated string as a String
-     */
-    public String rotateString(String inputString, int inputInc) {
-        //Validate that the input is non-negative
-        if (inputInc < 0) {
-            throw new IllegalArgumentException("Input cannot be negative");
-        }
-        
-        int stringLength = inputString.length();
-        
-        //A string can only be rotated at most by its own length
-        int inc = inputInc % stringLength;
-        
-        //Create char arrays for string manipulation
-        char[] original = inputString.toCharArray();
-        char[] rotated = new char[stringLength];
-        
-        //Reverse step through resulting char array, populating it
-        for (int i = stringLength - 1; i >= 0; i--) {
-            //Calculate index of desired character
-            int targetCharIndex = i - inc;
-            //If past beginning of OG string, pull from the end of it
-            if (targetCharIndex < 0) {
-                targetCharIndex = (stringLength) - (-1 * targetCharIndex);
-            }
-            //Populate resulting char array
-            rotated[i] = original[targetCharIndex];
-        }
-        
-        //Instantiate resulting char array as String and return it
-        return new String(rotated);
+private int getRotatedWordStartingIndex(int amountToRotate, int wordLength) {
+    if (wordLength < 1) {
+        return 0;
     }
+    return Math.floorMod(amountToRotate, wordLength);
+}
 
+private String getRotatedWordFirstHalf(String wordToBeRotated, int rotatedWordStartingIndex) {
+    return wordToBeRotated.substring(wordToBeRotated.length() - rotatedWordStartingIndex);
+}
 
-#3  If you could change 1 thing about your favorite framework/language/platform (pick one), what would it be?
+private String getRotatedWordSecondHalf(String wordToBeRotated, int rotatedWordStartingIndex) {
+    return wordToBeRotated.substring(0, wordToBeRotated.length() - rotatedWordStartingIndex);
+}
+```
 
-	If I could change 1 thing about Java, I would add some succinct ways to initialize common data types. For example, consider initializing a new File object:
-	
-	File newFile = new File(“inputFile.txt”);
-	
-	Reading this, my brain begins to filter out the word “file”, and suddenly the concept of a file is as abstract as a neural network. 
-	
-	I understand that this syntax is designed to prevent type mismatching, and for some people this is a much more readable style. Personally, I would have an easier time reading through somebody’s code if there was a good alternative to Java’s excessive verbosity.
-
-Let us know if you have any questions! If you're good to go, please send us back your exercise at your convenience (please upload your response to a public git repository, such as Github).
-
-
-
-
+3. If you could change 1 thing about your favorite framework/language/platform (pick one), what would it be?
+ - If I could change 1 thing about Java, I would add some succinct ways to declare/initialize common data types. For example, consider initializing a new File object: 
+ `File newFile = new File(“newFile”);` This example is a little bit silly, but it's really not that far-fetched. Regardless of how "clean" a piece of Java code is, these commonplace type declarations/initializations will likely be littered throughout, masking whatever unique logic the developer actually wrote.
